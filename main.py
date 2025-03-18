@@ -1,16 +1,21 @@
 import pyxel
 
-class App:
-    def __init__(self):
-        pyxel.init(160, 120)
-        self.x = 0
-        pyxel.run(self.update, self.draw)
+pyxel.init(160, 120, title="図形描画")
 
-    def update(self):
-        self.x = (self.x + 1) % pyxel.width
+def update():
+    if pyxel.btnp(pyxel.KEY_Q):
+        pyxel.quit()
 
-    def draw(self):
-        pyxel.cls(0)
-        pyxel.rect(self.x, 0, 8, 8, 9)
+def draw():
+    pyxel.cls(0)
+    
+    # 線を描画
+    pyxel.line(10, 10, 60, 60, 7)
+    
+    # 矩形を描画
+    pyxel.rect(70, 10, 40, 40, 8)
+    
+    # 円を描画
+    pyxel.circ(40, 80, 20, 12)
 
-App()
+pyxel.run(update, draw)
